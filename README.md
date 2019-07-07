@@ -8,7 +8,6 @@ the long run.
 
 * Data module
     - Network 
-    - Database 
 * Domain module
     - Repository 
 * App module 
