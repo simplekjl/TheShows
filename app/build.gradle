@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    def androidVersion = rootProject.ext.android
+    compileSdkVersion androidVersion.compileSdkVersion
+    buildToolsVersion androidVersion.buildToolsVersion
+    defaultConfig {
+        applicationId "com.simplekjl.showsapp"
+        minSdkVersion androidVersion.minSdkVersion
+        targetSdkVersion androidVersion.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        buildConfigField 'String', "ApiKey", THE_MOVIES_DB_API_KEY
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            versionNameSuffix '-debug'
+            minifyEnabled false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        dataBinding {
+            enabled true
+        }
+
+    }
+
+    testOptions {
+        testReportDirName = "$project.buildDir/reports"
+        testResultsDirName = "$project.buildDir/test-results"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation commonDependencies.kotlinStdLib
+    //Android framework
+    implementation commonDependencies.appCompat
+    implementation commonDependencies.androidCoreKtx
+    implementation commonDependencies.constraintLayout
+    implementation commonDependencies.recyclerView
+    implementation commonDependencies.cardView
+    /** Network **/
+    implementation commonDependencies.retrofit2
+    implementation commonDependencies.retrofitConverter
+    // Koin for Android
+    implementation commonDependencies.koin
+    // or Koin for Lifecycle scoping
+    implementation commonDependencies.koinScope
+    //or Koin for Android Architecture ViewModel
+    implementation commonDependencies.koinViewModel
+    /** RxJava **/
+    implementation commonDependencies.rxAndroid
+    implementation commonDependencies.rxJava2
+
+    implementation commonDependencies.materialDesign
+    implementation commonDependencies.lifecycleExtensions
+    //Testing
+    implementation commonTestDependencies.mockitoKotlin2
+    androidTestImplementation commonTestDependencies.mockitoKotlin
+    testImplementation commonTestDependencies.junit
+    androidTestImplementation commonTestDependencies.testRunner
+    testImplementation commonTestDependencies.architectureComponentsTesting
+    androidTestImplementation commonTestDependencies.espressoCore
+    androidTestImplementation commonTestDependencies.espressoContrib
+    androidTestImplementation commonTestDependencies.espressoIntents
+    androidTestImplementation commonTestDependencies.espressoIdling
+
+}

@@ -1,0 +1,102 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+
+ext {
+    api_key = '5d967c7c335764f39b1efbe9c5de9760'
+    //room
+    roomVersion = '2.1.0-alpha06'
+    // Libraries
+    koinVersion = '2.0.1'
+    androidCore = '1.0.2'
+    kotlinVersion = '1.3.31'
+    mpVersion = 'v3.0.3'
+    rxJava2 = '2.1.0'
+    rxAndroid = '2.0.1'
+    architectureComponents = '2.0.0'
+    supportLibrary = '1.0.0'
+    constraintLayout = '1.1.3'
+    javaxAnnotation = '10.0-b28'
+    retrofit2 = '2.6.0'
+    gson = '2.6.0'
+    viewModelVer = '2.0.1'
+    crashlitycsVersion = '2.10.1'
+    firebaseVersion = '17.0.0'
+    // Testing
+    junit = '4.12'
+    mockito = '2.8.9'
+    assertJ = '3.8.0'
+    espressoVer = '3.2.0'
+    androidTestRules = '1.2.0'
+    lifecycle_version = "2.0.0"
+    materialDesignVersion = '1.0.0'
+    mockitoKotlinVersion = '1.5.0'
+    mockKotlin2Version = '2.1.0'
+
+    classpathDep = [
+            kotlinGradlePlugin :    "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+    ]
+    commonDependencies = [
+
+            roomRuntime :  "androidx.room:room-runtime:$roomVersion",
+            roomKtx :"androidx.room:room-ktx:$roomVersion",
+            roomCompiler: "androidx.room:room-compiler:$roomVersion",
+            roomTesting :  "androidx.room:room-testing:$roomVersion",
+            kotlinStdLib                    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+
+            rxJava2                         : "io.reactivex.rxjava2:rxjava:${rxJava2}",
+            rxAndroid                       : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
+
+           javaxAnnotation                 : "org.glassfish:javax.annotation:${javaxAnnotation}",
+
+            appCompat                       : "androidx.appcompat:appcompat:${androidCore}",
+            androidCoreKtx                  : "androidx.core:core-ktx:${androidCore}",
+            cardView                        : "androidx.cardview:cardview:${supportLibrary}",
+            recyclerView                    : "androidx.recyclerview:recyclerview:${supportLibrary}",
+            constraintLayout                : "androidx.constraintlayout:constraintlayout:${constraintLayout}",
+
+
+            architectureComponentsExtensions: "android.arch.lifecycle:extensions:${architectureComponents}",
+            architectureComponentsCompiler  : "android.arch.lifecycle:compiler:${architectureComponents}",
+
+
+            retrofit2                       : "com.squareup.retrofit2:retrofit:${retrofit2}",
+            retrofitRxAdapter               : "com.squareup.retrofit2:adapter-rxjava2:${retrofit2}",
+            retrofitConverter               : "com.squareup.retrofit2:converter-gson:${retrofit2}",
+
+            gson                            : "com.google.code.gson:gson:${gson}",
+            viewModel                       : "org.koin:koin-androidx-viewmodel:${viewModelVer}",
+            lifecycleExtensions             : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+
+            firebaseCore                    : "com.google.firebase:firebase-core:${firebaseVersion}",
+            crashlitycs                     : "com.crashlytics.sdk.android:crashlytics:${crashlitycsVersion}",
+
+            koin                            : "org.koin:koin-android:${koinVersion}",
+            koinScope                       : "org.koin:koin-androidx-scope:${koinVersion}",
+            koinViewModel                   : "org.koin:koin-androidx-viewmodel:${koinVersion}",
+
+            materialDesign                  : "com.google.android.material:material:${materialDesignVersion}"
+
+
+    ]
+
+    commonTestDependencies = [
+            junit                        : "junit:junit:${junit}",
+            assertj                      : "org.assertj:assertj-core:${assertJ}",
+            mockito                      : "org.mockito:mockito-core:${mockito}",
+            mockitoKotlin2               : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockKotlin2Version}",
+            mockitoKotlin                : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            architectureComponentsTesting: "androidx.arch.core:core-testing:${architectureComponents}",
+            testRunner                   : "androidx.test:runner:${androidTestRules}",
+            testRule                     : "androidx.test:rules:${androidTestRules}",
+            espressoCore                 : "androidx.test.espresso:espresso-core:${espressoVer}",
+            espressoContrib              : "androidx.test.espresso:espresso-contrib:${espressoVer}",
+            espressoIntents              : "androidx.test.espresso:espresso-intents:${espressoVer}",
+            espressoIdling               : "androidx.test.espresso:espresso-idling-resource:${espressoVer}"
+    ]
+}
