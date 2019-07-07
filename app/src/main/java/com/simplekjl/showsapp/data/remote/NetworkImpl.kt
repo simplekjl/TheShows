@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NetworkImpl constructor(val service: MoviesDBService) : Network {
+class NetworkImpl constructor(private val service: MoviesDBService) : Network {
     override fun getShows(page: Int): Single<ResponseState> {
         return Single.create { emitter ->
             service.getShows(BuildConfig.ApiKey, page).enqueue(object : Callback<ResponseState> {
