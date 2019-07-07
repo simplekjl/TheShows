@@ -1,4 +1,4 @@
-package com.simplekjl.showsapp.data
+package com.simplekjl.showsapp.domain
 
 import com.simplekjl.showsapp.data.model.ResponseState
 import io.reactivex.Observable
