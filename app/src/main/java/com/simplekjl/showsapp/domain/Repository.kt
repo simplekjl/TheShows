@@ -1,8 +1,8 @@
 package com.simplekjl.showsapp.domain
 
-import com.simplekjl.showsapp.data.model.ResponseState
+import com.simplekjl.showsapp.data.model.ResponseType
 import io.reactivex.Observable
 
 interface Repository {
-    fun getShows(page: Int): Observable<ResponseState>
+    fun getShows(page: Int): Observable<ResponseType>
 }

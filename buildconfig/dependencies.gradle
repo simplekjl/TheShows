@@ -17,16 +17,23 @@ ext {
     kotlinVersion = '1.3.31'
     mpVersion = 'v3.0.3'
     rxJava2 = '2.1.0'
+    rxKotlinVersion = '2.1.0'
     rxAndroid = '2.0.1'
     architectureComponents = '2.0.0'
     supportLibrary = '1.0.0'
     constraintLayout = '1.1.3'
     javaxAnnotation = '10.0-b28'
-    retrofit2 = '2.6.0'
-    gson = '2.6.0'
     viewModelVer = '2.0.1'
     crashlitycsVersion = '2.10.1'
     firebaseVersion = '17.0.0'
+    timberVersion = '4.5.1'
+
+    //Remote
+    gsonVersion = '2.8.1'
+    okHttpVersion = '3.8.1'
+    androidAnnotationsVersion = '21.0.3'
+    retrofitVersion = '2.3.0'
+
     // Testing
     junit = '4.12'
     mockito = '2.8.9'
@@ -65,11 +72,6 @@ ext {
             architectureComponentsCompiler  : "android.arch.lifecycle:compiler:${architectureComponents}",
 
 
-            retrofit2                       : "com.squareup.retrofit2:retrofit:${retrofit2}",
-            retrofitRxAdapter               : "com.squareup.retrofit2:adapter-rxjava2:${retrofit2}",
-            retrofitConverter               : "com.squareup.retrofit2:converter-gson:${retrofit2}",
-
-            gson                            : "com.google.code.gson:gson:${gson}",
             viewModel                       : "org.koin:koin-androidx-viewmodel:${viewModelVer}",
             lifecycleExtensions             : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
 
@@ -80,7 +82,9 @@ ext {
             koinScope                       : "org.koin:koin-androidx-scope:${koinVersion}",
             koinViewModel                   : "org.koin:koin-androidx-viewmodel:${koinVersion}",
 
-            materialDesign                  : "com.google.android.material:material:${materialDesignVersion}"
+            materialDesign                  : "com.google.android.material:material:${materialDesignVersion}",
+
+            timber                          : "com.jakewharton.timber:timber:${timberVersion}",
 
 
     ]
@@ -98,5 +102,17 @@ ext {
             espressoContrib              : "androidx.test.espresso:espresso-contrib:${espressoVer}",
             espressoIntents              : "androidx.test.espresso:espresso-intents:${espressoVer}",
             espressoIdling               : "androidx.test.espresso:espresso-idling-resource:${espressoVer}"
+    ]
+
+    remoteDependencies = [
+            gson:               "com.google.code.gson:gson:${gsonVersion}",
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            okHttp:             "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogger:       "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit:           "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter:  "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter:    "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
     ]
 }
