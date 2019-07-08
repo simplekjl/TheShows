@@ -15,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField 'String', "ApiKey", THE_MOVIES_DB_API_KEY
+        buildConfigField "String", "BASE_URL_API", "\"https://api.themoviedb.org/3/tv/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -59,9 +60,18 @@ dependencies {
     implementation commonDependencies.constraintLayout
     implementation commonDependencies.recyclerView
     implementation commonDependencies.cardView
+    implementation commonDependencies.materialDesign
+    implementation commonDependencies.lifecycleExtensions
+    implementation commonDependencies.timber
     /** Network **/
-    implementation commonDependencies.retrofit2
-    implementation commonDependencies.retrofitConverter
+    implementation remoteDependencies.kotlin
+    implementation remoteDependencies.rxKotlin
+    implementation remoteDependencies.gson
+    implementation remoteDependencies.okHttp
+    implementation remoteDependencies.okHttpLogger
+    implementation remoteDependencies.retrofit
+    implementation remoteDependencies.retrofitConverter
+    implementation remoteDependencies.retrofitAdapter
     // Koin for Android
     implementation commonDependencies.koin
     // or Koin for Lifecycle scoping
@@ -72,8 +82,6 @@ dependencies {
     implementation commonDependencies.rxAndroid
     implementation commonDependencies.rxJava2
 
-    implementation commonDependencies.materialDesign
-    implementation commonDependencies.lifecycleExtensions
     //Testing
     implementation commonTestDependencies.mockitoKotlin2
     androidTestImplementation commonTestDependencies.mockitoKotlin

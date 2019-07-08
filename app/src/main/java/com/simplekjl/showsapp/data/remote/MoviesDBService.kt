@@ -1,6 +1,6 @@
 package com.simplekjl.showsapp.data.remote
 
-import com.simplekjl.showsapp.data.model.ResponseState
+import com.simplekjl.showsapp.data.model.ShowsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,9 +10,9 @@ import retrofit2.http.Query
  */
 interface MoviesDBService {
 
-    @GET("/popular")
+    @GET("popular")
     fun getShows(
         @Query("api_key") apiKey: String,
         @Query("page") page: Int
-    ): Call<ResponseState>
+    ): Call<ShowsResponse>
 }
