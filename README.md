@@ -7,8 +7,7 @@ In order to run the app the following variable must be created in the `gradle.pr
 
 # Architecture 
 The application follow as close as possible the SOLID principles and CLEAN architecture using MVVM to take advantage of 
-the architecture components for Android, given that the features can be added this will provide a easy way to do it in 
-the long run.
+the architecture components for Android as well as allowing more features to be added in the long run.
 
 * Data module
     - Network 
@@ -23,7 +22,7 @@ The code provide for the majority of the logical code testing, some classes are 
 If the architecture is know before hand is a good approach to use TDD using the RED GREEN REFACTOR cycle 
 
 # Layouts
-The layouts are splitter in small ones for reuse
+The layouts are separated in small ones for reuse
 
 # UI state
 As common preference I like a lot this approach of states in views given the flexibility that give us as developers.
