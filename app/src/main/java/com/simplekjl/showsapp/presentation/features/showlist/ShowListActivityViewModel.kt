@@ -35,6 +35,8 @@ class ShowListActivityViewModel constructor(private val repository: Repository, 
     }
 
     fun clear() {
+        totalPages = 0
+        nextPage = 0
         compositeDisposable.clear()
     }
 
