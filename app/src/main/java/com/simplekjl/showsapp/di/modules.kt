@@ -19,7 +19,7 @@ val appModule = module(override = true) {
     single<MoviesDBService> { get<Retrofit>().create(MoviesDBService::class.java) }
     single<Network> { NetworkImpl(get()) }
     single<Repository> { RepositoryImpl(NetworkImpl(get())) }
-    single{ StateMapper() }
+    single { StateMapper() }
     viewModel { ShowListActivityViewModel(get(), get()) }
     factory { MoviesDBServiceFactory.makeMoviesDbService(BuildConfig.DEBUG) }
 }
