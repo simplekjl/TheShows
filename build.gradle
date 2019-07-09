@@ -30,3 +30,9 @@ allprojects {
 tasks.register("clean", Delete){
     delete rootProject.buildDir
 }
+
+tasks.register("getHomeDir") {
+    doLast {
+        println gradle.gradleHomeDir
+    }
+}
