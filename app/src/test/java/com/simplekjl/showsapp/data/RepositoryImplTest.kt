@@ -32,7 +32,7 @@ class RepositoryImplTest {
     fun getShows() {
         val showList = listOf(
             Show(
-                "", 0, 0, "", 0,
+                "", "0.0".toFloat(), 0, "", "0.0".toFloat(),
                 "", "", ""
             )
         )
@@ -41,7 +41,8 @@ class RepositoryImplTest {
         mockNetwork.getShows(1)
             .test()
             .assertNoErrors()
-            .onNext(showsResponse)
+            .assertValue(showsResponse)
+            .assertComplete()
     }
 
     @Test
@@ -52,7 +53,8 @@ class RepositoryImplTest {
         mockNetwork.getShows(1)
             .test()
             .assertNoErrors()
-            .onNext(notFoundResponse)
+            .assertValue(notFoundResponse)
+            .assertComplete()
     }
 
     @Test
@@ -63,6 +65,7 @@ class RepositoryImplTest {
         mockNetwork.getShows(1)
             .test()
             .assertNoErrors()
-            .onNext(errorResponse)
+            .assertValue(errorResponse)
+            .assertComplete()
     }
 }

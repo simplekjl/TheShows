@@ -122,7 +122,7 @@ class ShowListActivity : AppCompatActivity(), ItemClickListener {
                     Timber.d("item Count $totalItemCount")
                     if (lastVisibleItemPosition == totalItemCount.minus(2)) {
                         activityViewModel.loadNextPage()
-                        Timber.d("Loading next pag $lastVisibleItemPosition")
+                        Timber.d("Loading next page $lastVisibleItemPosition")
                     }
 
                 }
@@ -131,7 +131,7 @@ class ShowListActivity : AppCompatActivity(), ItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        //TODO item click
+        //Implement click listener to the items
     }
 
     override fun onDestroy() {
