@@ -58,7 +58,6 @@ class ShowListActivity : AppCompatActivity(), ItemClickListener {
     }
 
     private fun getShows(page: Int) {
-        //use view model and render state
         activityViewModel.getShows(page).observe(this, Observer { state ->
             when (state) {
                 is Loading -> {
