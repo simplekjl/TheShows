@@ -14,7 +14,7 @@ android {
         targetSdkVersion androidVersion.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        buildConfigField 'String', "ApiKey", '\"5d967c7c335764f39b1efbe9c5de9760\"'
+        buildConfigField 'String', "ApiKey", THE_MOVIES_DB_API_KEY
         buildConfigField "String", "BASE_URL_API", "\"https://api.themoviedb.org/3/tv/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -94,6 +94,5 @@ dependencies {
     androidTestImplementation commonTestDependencies.espressoContrib
     androidTestImplementation commonTestDependencies.espressoIntents
     androidTestImplementation commonTestDependencies.espressoIdling
-    implementation 'android.arch.paging:runtime:1.0.0'
 
 }

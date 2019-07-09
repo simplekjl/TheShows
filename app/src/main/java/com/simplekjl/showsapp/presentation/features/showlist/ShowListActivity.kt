@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.simplekjl.showsapp.R
 import com.simplekjl.showsapp.data.model.Show
 import com.simplekjl.showsapp.databinding.ShowListActivityBinding
@@ -19,11 +20,41 @@ class ShowListActivity : AppCompatActivity(), ItemClickListener {
     private lateinit var activityBinding: ShowListActivityBinding
     private val activityViewModel: ShowListActivityViewModel by viewModel()
     private val tag = ShowListActivity::class.java.name
+    val adapter: ShowCardsAdapter = ShowCardsAdapter(mutableListOf(), this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityBinding = DataBindingUtil.setContentView(this, R.layout.show_list_activity)
+        //started point for the results
         getShows(1)
+        // subscriptions to have an infinite scroll
+        suscribeToMoreShows()
+    }
+
+    private fun suscribeToMoreShows() {
+        activityViewModel.shows.observe(
+            this, Observer { state ->
+                when (state) {
+                    is Loading -> {
+                        Timber.d("Loading more ...")
+                    }
+                    is ErrorEx -> {
+                        Timber.d(tag, "message : ${state.msg} , code: ${state.code}")
+                    }
+                    is ErrorMessage -> {
+                        Timber.d(state.status_message)
+                    }
+                    is NotFoundMessage -> {
+                        Timber.d(state.status_message)
+                    }
+                    is Success -> {
+                        activityViewModel.nextPage = state.page + 1
+                        activityViewModel.totalPages = state.total_pages
+                        activityViewModel.loadingData = false
+                        adapter.updateItems(state.results)
+                    }
+                }
+            })
     }
 
     private fun getShows(page: Int) {
@@ -45,6 +76,8 @@ class ShowListActivity : AppCompatActivity(), ItemClickListener {
                 }
                 is Success -> {
                     showList()
+                    activityViewModel.nextPage = state.page + 1
+                    activityViewModel.totalPages = state.total_pages
                     renderShows(state.results)
                 }
             }
@@ -74,9 +107,26 @@ class ShowListActivity : AppCompatActivity(), ItemClickListener {
     }
 
     private fun renderShows(list: List<Show>) {
+        //setting the adapter
+        activityBinding.rvGeneric.layoutManager = LinearLayoutManager(this@ShowListActivity)
+        activityBinding.rvGeneric.adapter = adapter
+        adapter.updateItems(list)
         with(activityBinding.rvGeneric) {
-            layoutManager = LinearLayoutManager(this@ShowListActivity)
-            adapter = ShowCardsAdapter(list, this@ShowListActivity)
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val layoutManager = recyclerView.layoutManager
+                    val totalItemCount = layoutManager!!.itemCount
+                    val lastVisibleItemPosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+                    Timber.d("item Count $totalItemCount")
+                    if (lastVisibleItemPosition == totalItemCount.minus(2)) {
+                        activityViewModel.loadNextPage()
+                        Timber.d("Loading next pag $lastVisibleItemPosition")
+                    }
+
+                }
+            })
         }
     }
 

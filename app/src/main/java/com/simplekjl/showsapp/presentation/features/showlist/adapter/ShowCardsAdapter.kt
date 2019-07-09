@@ -7,7 +7,7 @@ import com.simplekjl.showsapp.data.model.Show
 import com.simplekjl.showsapp.databinding.ShowCardItemBinding
 
 class ShowCardsAdapter(
-    private var showList: List<Show>,
+    private val showList: MutableList<Show>,
     private val listener: ItemClickListener
 ) : RecyclerView.Adapter<ShowCardViewHolder>() {
 
@@ -22,5 +22,10 @@ class ShowCardsAdapter(
 
     override fun onBindViewHolder(holder: ShowCardViewHolder, position: Int) {
         holder.setItem(showList[position])
+    }
+
+    fun updateItems(cards: List<Show>) {
+        showList.addAll(cards)
+        notifyDataSetChanged()
     }
 }

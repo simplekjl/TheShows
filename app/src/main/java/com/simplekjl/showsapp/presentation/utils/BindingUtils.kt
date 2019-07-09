@@ -25,13 +25,23 @@ class BindingUtils {
 
         @JvmStatic
         @BindingAdapter("loadImage")
-        fun loadImage(view: ImageView, url: String) {
-            val posterUtl = getPathForImage(url)
-            Picasso.get()
-                .load(posterUtl)
-                .placeholder(R.drawable.thumbnail)
-                .error(R.drawable.thumbnail)
-                .into(view)
+        fun loadImage(view: ImageView, url: String?) {
+            if (url != null) {
+                val poserUrl = getPathForImage(url)
+                Picasso.get()
+                    .load(poserUrl)
+                    .placeholder(R.drawable.thumbnail)
+                    .error(R.drawable.thumbnail)
+                    .into(view)
+            } else {
+                Picasso.get()
+                    .load(R.drawable.thumbnail)
+                    .placeholder(R.drawable.thumbnail)
+                    .error(R.drawable.thumbnail)
+                    .into(view)
+
+            }
+
         }
 
         private fun getPathForImage(url: String): String {
