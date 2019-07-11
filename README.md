@@ -2,7 +2,7 @@
 The shows is a small project which fetch information from themoviedb.org API 
 
 # API KEY
-In order to run the app the following variable must be created in the `gradle.properties' located in `$USER/.gradle`
+In order to run the app the following variable must be created in the `gradle.properties` located in `$USER/.gradle`
 * `export THE_MOVIES_DB_API_KEY = your_api_key`
 
 # Architecture 
@@ -26,7 +26,8 @@ The layouts are separated in small ones for reuse
 
 # UI state
 As common preference I implemented States in views defined with sealed classes to provide more flexibility in the long run as the project grows.
-The use of this is pattern located in the main activity where according to the given 'state' it will update the layout.
+
+The use of this is pattern is located in the main activity where according to the given 'state' it will update the layout.
 
 ```javascript
 private fun getShows(page: Int) {
