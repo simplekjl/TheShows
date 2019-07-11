@@ -25,8 +25,8 @@ If the architecture is know before hand is a good approach to use TDD using the 
 The layouts are separated in small ones for reuse
 
 # UI state
-As common preference I like a lot this approach of states in views given the flexibility that give us as developers.
-The use of this is located in the main activity where according to the given 'state' it will update the layout.
+As common preference I implemented States in views defined with sealed classes to provide more flexibility in the long run as the project grows.
+The use of this is pattern located in the main activity where according to the given 'state' it will update the layout.
 
 ```javascript
 private fun getShows(page: Int) {
